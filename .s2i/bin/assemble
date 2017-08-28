@@ -2,6 +2,7 @@
 
 echo "------ START BUILD INFO ------- "
 echo $BUILD
+env
 echo "------ END BUILD INFO ------------"
 
 echo "Before assembling"
