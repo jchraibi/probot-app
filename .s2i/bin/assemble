@@ -5,7 +5,10 @@ echo $BUILD
 env
 echo "------ END BUILD INFO ------------"
 
-target_url='https://176.159.19.190:8443/console/project/'+$OPENSHIFT_BUILD_NAMESPACE+'/browse/builds/probotapp/'+$OPENSHIFT_BUILD_NAME+'?tab=logs'
+echo $OPENSHIFT_BUILD_NAMESPACE
+echo $OPENSHIFT_BUILD_NAME
+
+target_url="https://176.159.19.190:8443/console/project/" + $OPENSHIFT_BUILD_NAMESPACE + "/browse/builds/probotapp/" + $OPENSHIFT_BUILD_NAME + "?tab=logs"
 echo "---------TARGET URL:--------" 
 echo $target_url
 
