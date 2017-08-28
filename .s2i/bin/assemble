@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "------ START BUILD INFO ------- "
+echo $BUILD
+echo "------ END BUILD INFO ------------"
+
+echo "Before assembling"
+
+/usr/libexec/s2i/assemble
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "After successful assembling"
+else
+    echo "After failed assembling"
+fi
+
+exit $rc
