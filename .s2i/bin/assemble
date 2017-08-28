@@ -5,12 +5,12 @@ echo $BUILD
 env
 echo "------ END BUILD INFO ------------"
 
-curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data {
+curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "pending",
   "target_url": "https://www.google.fr",
   "description": "The build started",
   "context": "openshift build in s2i"
-}
+}'
 echo "Before assembling"
 
 /usr/libexec/s2i/assemble
