@@ -6,6 +6,9 @@ env
 echo "------ END BUILD INFO ------------"
 
 target_url='https://176.159.19.190:8443/console/project/'+$OPENSHIFT_BUILD_NAMESPACE+'/browse/builds/probotapp/'+$OPENSHIFT_BUILD_NAME+'?tab=logs'
+echo "---------TARGET URL:--------" 
+echo $target_url
+
 
 curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "pending",
