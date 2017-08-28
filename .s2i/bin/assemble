@@ -26,7 +26,7 @@ if [ $rc -eq 0 ]; then
     curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "success",
   "target_url": "'"$target_url"'",
-  "description": "The OpenShift build has started",
+  "description": "The OpenShift build has succeeded.",
   "context": "openshift build in s2i"
 }'
 
@@ -35,7 +35,7 @@ else
     curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "failed",
   "target_url": "'"$target_url"'",
-  "description": "The OpenShift build has started",
+  "description": "The OpenShift build has failed",
   "context": "openshift build in s2i"
 }'
 
