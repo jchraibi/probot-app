@@ -15,7 +15,7 @@ echo $target_url
 
 curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "pending",
-  "target_url": target_url,
+  "target_url": "$target_url",
   "description": "The OpenShift build has started",
   "context": "openshift build in s2i"
 }'
