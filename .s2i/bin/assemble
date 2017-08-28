@@ -5,13 +5,10 @@ echo $BUILD
 env
 echo "------ END BUILD INFO ------------"
 
-echo $OPENSHIFT_BUILD_NAMESPACE
-echo $OPENSHIFT_BUILD_NAME
-
 target_url="https://$OPENSHIFT_URL/console/project/$OPENSHIFT_BUILD_NAMESPACE/browse/builds/probotapp/$OPENSHIFT_BUILD_NAME"
+
 echo "---------TARGET URL:--------" 
 echo $target_url
-
 
 curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
   "state": "pending",
@@ -26,8 +23,22 @@ rc=$?
 
 if [ $rc -eq 0 ]; then
     echo "After successful assembling"
+    curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
+  "state": "success",
+  "target_url": "'"$target_url"'",
+  "description": "The OpenShift build has started",
+  "context": "openshift build in s2i"
+}'
+
 else
     echo "After failed assembling"
+    curl --user "$GIT_USER:$GIT_PASSWORD" -X POST https://api.github.com/repos/$GIT_USER/probot-app/statuses/$OPENSHIFT_BUILD_COMMIT --data '{
+  "state": "failed",
+  "target_url": "'"$target_url"'",
+  "description": "The OpenShift build has started",
+  "context": "openshift build in s2i"
+}'
+
 fi
 
 exit $rc
