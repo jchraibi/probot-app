@@ -5,8 +5,8 @@ echo $BUILD
 env
 echo "------ END BUILD INFO ------------"
 
-//The BuildConfig needs to have an env variable named OPENSHIFT_URL in the form of SERVER_IP:PORT
-//$OPENSHIFT_BUILD_NAMESPACE is used as the build name, needs to be changed if not created automatically by probot
+#The BuildConfig needs to have an env variable named OPENSHIFT_URL in the form of SERVER_IP:PORT
+#$OPENSHIFT_BUILD_NAMESPACE is used as the build name, needs to be changed if not created automatically by probot
 target_url="https://$OPENSHIFT_URL/console/project/$OPENSHIFT_BUILD_NAMESPACE/browse/builds/$OPENSHIFT_BUILD_NAMESPACE/$OPENSHIFT_BUILD_NAME?tab=logs"
 
 echo "---------TARGET URL:--------" 
